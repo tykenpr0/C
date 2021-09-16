@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define N 50
+int losuj(int a, int b){
+        return rand()/(RAND_MAX+1.0)*a+(b-a);
+}
+int main(void){
+        srand(time(NULL));
+puts("Podaj przedial losowania");
+        int a,b,pom,min,max,suma;
+        scanf("%d %d",&a,&b);
+int t[N];
+for(int i=0;i<N;i++){
+        t[i]=losuj(a,b);
+        printf("t[%d]=%d\n",i,t[i]);
+}
+printf("Wylosowania liczba z przedzialu (%d,%d) to: %d\n",a,b,losuj(a,b));
+puts("**ODWROTNIE**");
+for(int i=N-1;i>=0;i--){
+        printf("t[%d]=%d\n",i,t[i]);
+        suma+=t[i];
+}
+printf("**RAND_MAX=%d\n",RAND_MAX);
+
+for(int j=0;j<N;j++){
+        for(int i=0;i<N-1;i++){
+        if(t[i]>t[i+1]){
+                pom=t[i];
+                t[i]=t[i+1];
+                t[i+1]=pom;
+        }
+        }
+}
+puts("**POSORTOWANA**");
+for(int i=0;i<N;i++){
+        printf("t[%d]=%d\n",i,t[i]);
+}
+max=min=t[0];
+for(int i=0;i<N;i++){
+        if(t[i]>max)
+                max=t[i];
+        else if(t[i]<min)
+                min=t[i];
+}
+printf("\nMIN=%d \t MAX=%d\n",min,max);
+printf("SREDNIA=%d \n",(suma/N));
+return 0;
+}

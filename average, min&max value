@@ -1,0 +1,22 @@
+#define ILE 4
+#include <stdio.h>
+int main(){
+        float n,sum,sr;
+        sum=0;
+        float max,min;
+        for(int i=0;i<ILE;i++){
+                printf("podaj liczbe calkowita");
+                puts("");
+                scanf("%f",&n);
+                sum+=n;
+                if(i==0){max=min=n;}
+                if(n>max)
+                        max=n;
+                        else if(min>n)
+                                min=n;
+                }
+                printf("srednia wynosi: %f\n\t max=%f\t min=%f\n",(sum/ILE),max,min);
+printf("suma:%f\n",sum);
+puts("");
+puts("");
+return 0;

@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define N 10
+
+void zamiana(int* a, int* b){
+        int pom = *a;
+        *a=*b;
+        *b=pom;
+}
+void odwroc(int* tab){
+        for(int i=0;i<N;i++){
+                for(int j=N-2;j>=i;j--){
+        zamiana(tab+j,tab+j+1);
+        }
+        }
+}
+void wymien_tablice(int* T1, int* T2){
+        for(int i=0;i<N;i++){
+        zamiana(T1+i,T2+i);
+        }
+}
+int main(void){
+        int x=5,y=7;
+        printf("%d %d\n",x,y);
+        zamiana(&x,&y);
+        printf("%d %d\n",x,y);
+        int t1[N],t2[N];
+        for(int i=0;i<N;i++){
+                t1[i]=i;
+                t2[i]=2*i;
+        printf("\t%d \t%d\n",t1[i],t2[i]);
+        }
+        wymien_tablice(t1,t2);
+        puts("Wymieniamy wartosci pomiedzy tablica");
+        for(int i=0;i<N;i++){
+        printf("\t%d \t%d\n",t1[i],t2[i]);
+        }
+        puts("Odwracam tablice T2:");
+        odwroc(t2);
+        for(int i=0;i<N;i++){
+        printf("\t %d \n",t2[i]);
+        }
+
+        return 0;
+}

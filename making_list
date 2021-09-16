@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#define N 50
+int main(){
+        puts("Podaj maksymalna liczbe w losowaniu");
+        int n,pom,min,max,suma;
+        scanf("%d",&n);
+int t[N];
+srand(time(NULL));
+for(int i=0;i<N;i++){
+        t[i]=rand()/(RAND_MAX+1.0)*n;
+        printf("t[%d]=%d\n",i,t[i]);
+}
+puts("**ODWROTNIE**");
+for(int i=N-1;i>=0;i--){
+        printf("t[%d]=%d\n",i,t[i]);
+        suma+=t[i];
+}
+printf("**RAND_MAX=%d\n",RAND_MAX);
+
+for(int j=0;j<N;j++){
+        for(int i=0;i<N-1;i++){
+        if(t[i]>t[i+1]){
+                pom=t[i];
+                t[i]=t[i+1];
+                t[i+1]=pom;
+        }
+        }
+}
+puts("**POSORTOWANA**");
+for(int i=0;i<N;i++){
+        printf("t[%d]=%d\n",i,t[i]);
+}
+max=min=t[0];
+for(int i=0;i<N;i++){
+        if(t[i]>max)
+                max=t[i];
+        else if(t[i]<min)
+                min=t[i];
+}
+printf("\nMIN=%d \t MAX=%d\n",min,max);
+printf("SREDNIA=%d \n",(suma/N));
+return 0;
+}

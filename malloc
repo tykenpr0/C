@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include <stdlib.h>
+
+int main(void){
+        int N;
+        puts("Podaj rozmiar tworzonej tablicy");
+        scanf("%d",&N);
+        char* tab;
+        tab=(char*)malloc(N*sizeof(tab));
+        for(int i=0;i<N;i++){
+                *(tab+i)=rand()%25+98;
+                printf("tab[%d]=%c\n",i,*(tab+i));
+        }
+        puts("Rozszerzamy tablice");
+        tab=realloc(tab,2*N*sizeof(tab));
+        for(int i=0;i<2*N;i++){
+                *(tab+i+N)=*(tab+i)-32;
+                printf("tab[%d]=%c\n",i,*(tab+i));
+        }
+        return 0;
+}

@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct zespol{
+        int r,u;
+}z1,z2;
+
+int main(void){
+puts("Podaj wartosc rzeczywista i urojona ");
+scanf("%d %d",&z1.r,&z1.u);
+puts("Podaj wartosc rzeczywista i urojona");
+scanf("%d %d",&z2.r,&z2.u);
+printf("z1=%d + %d*i \n z2=%d + %d*i \n", z1.r,z1.u,z2.r,z2.u);
+return 0;
+}

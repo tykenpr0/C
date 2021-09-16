@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int losuj(int *tab,int *T,int N, int K){
+        int suma,temp;
+        suma=temp=0;
+        for(int i=0;i<N;i++){
+                for(int j=1;j<=K;j++){
+                        if(*(tab+i)%j==0)
+                                temp++;
+
+        }
+                if(temp<=2){
+                        *(T+i)=*(tab+i);
+                        suma++;
+                }else
+                        *(T+i)=-1;
+        temp=0;
+        }
+
+for(int i=0;i<N;i++){
+        for(int j=0;j<N-1;j++){
+                if(*(T+j)>*(T+j+1)){
+                        int pom=0;
+                        pom=*(T+j);
+                        *(T+j)=*(T+j+1);
+                        *(T+j+1)=pom;
+                }
+
+        }
+}
+
+        return suma;
+}
+void usun(int *T,int N,int K,int suma){
+        int x=0;
+        int pom[suma];
+        for(int i=0;i<suma;i++){
+                pom[i]=0;
+        }
+        for(int z=0;z<N;z++){
+                if(T[z]!=-1)
+                pom[x]=T[z];
+                break;
+        }
+                for(int j=0;j<N;j++){
+                if(pom[x]!=T[j]){
+                        ++x;
+                pom[x]=T[j];
+                }
+                }
+for(int k=0;k<suma;k++){
+        printf("pokaz kiedy sie usuwa: %d\n",pom[k]);
+}
+}
+
+
+
+int main(void){
+int N,K,suma;
+srand(time(NULL));
+puts("Podaj wielkosc tablicy");
+scanf("%d",&N);
+puts("Podaj maksymalna wartosc przedzialu");
+scanf("%d",&K);
+int T[N],T2[N];
+for(int i=0;i<N;i++){
+        T[i]=rand()%(K+1);
+}
+suma=losuj(T,T2,N,K);
+printf("SUMA: %d\n",suma);
+puts("Wylosowa tablica");
+for(int i=0;i<N;i++){
+        printf("%d\n",T[i]);
+}
+puts("Tablica posortowanych liczb pierwszych");
+for(int i=0;i<N;i++){
+        printf("%d\n",T2[i]);
+}
+puts("Tablica bez powtorzen");
+usun(T2,N,K,suma);
+for(int i=0;i<N;i++){
+//      if(T2[i]==-1) continue;
+//      printf("%d\n",T2[i]);
+}
+return 0;
+}

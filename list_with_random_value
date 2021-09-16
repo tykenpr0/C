@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define N 10
+
+float suma(float *t, float *max, float *min){
+        float suma=0;
+        *max=*min=*t;
+        for(int i=0;i<N;i++){
+                suma+=*(t+i);
+
+                if(*min>*(t+i))
+                        *min=*(t+i);
+                if(*max<*(t+i))
+                        *max=*(t+i);
+        }
+return suma;
+}
+
+int main(void){
+float tab[N];
+srand(time(NULL));
+for(int i=0;i<N;i++){
+        tab[i]=rand()/(RAND_MAX+1.0);
+        printf("%f \n",tab[i]);
+}
+float max,min;
+puts("SUMA TABLICY");
+printf("%f\n",suma(tab,&max,&min));
+printf("MAX=%f \t MIN=%f\n",max,min);
+        return 0;
+}
+
